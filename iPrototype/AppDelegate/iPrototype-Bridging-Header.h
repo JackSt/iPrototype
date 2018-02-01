@@ -9,5 +9,6 @@
 #ifndef iPrototype_Bridging_Header_h
 #define iPrototype_Bridging_Header_h
 
+#import <UIKit/UIKit.h>
 
 #endif /* iPrototype_Bridging_Header_h */

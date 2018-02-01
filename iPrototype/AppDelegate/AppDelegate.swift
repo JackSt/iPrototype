@@ -11,11 +11,12 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Default settings.
+        self.loadDefaultSettings()
         return true
     }
 
@@ -42,5 +43,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+// MARK: - Private functions.
+
+extension AppDelegate {
+    
+    private func loadDefaultSettings() {
+        
+        // Load start controller.
+        self.loadMainTabBarController()
+    }
+    
+    private func loadMainTabBarController() {
+        let storyboard = UIStoryboard.init(name: "MainTabBar", bundle: nil)
+        let tabbarController = storyboard.instantiateViewController(withIdentifier: MainTabBarController.className) as! UITabBarController
+        
+        let transition = CATransition()
+        transition.type = kCATransitionFromTop
+        (UIApplication.shared.delegate as! AppDelegate).window?.set(rootViewController: tabbarController, withTransition: transition)
+    }
 }
 
